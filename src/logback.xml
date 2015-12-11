@@ -1,0 +1,18 @@
+<configuration debug="true">
+    <appender name="loggly" class="ch.qos.logback.ext.loggly.LogglyAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>ERROR</level>
+        </filter>
+        <pattern>[%d] [%p] [%t] [%c] : %m%n%ex%n</pattern>
+        <endpointUrl>http://logs-01.loggly.com/inputs/04ae2032-f6c4-44b6-9740-b1e72c3978cc/tag/logback</endpointUrl>
+    </appender>
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>[%d] [%p] [%t] [%c] : %m%n%ex%n</pattern>
+        </encoder>
+    </appender>
+    <root>
+        <appender-ref ref="STDOUT" />
+        <appender-ref ref="loggly" />
+    </root>
+</configuration>
