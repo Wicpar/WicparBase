@@ -1,8 +1,8 @@
 package com.wicpar.wicparbase.physics.system.Defaults;
 
-import com.wicpar.wicparbase.physics.IParent;
 import com.wicpar.wicparbase.physics.IPhysical;
 import com.wicpar.wicparbase.physics.system.Force;
+import com.wicpar.wicparbase.physics.system.Hierarchical;
 import com.wicpar.wicparbase.physics.system.Physical;
 import org.joml.Vector3d;
 
@@ -29,8 +29,8 @@ public class Spring extends Force
 	public void Initialize()
 	{
 		super.Initialize();
-		a.addDependent(this);
-		b.addDependent(this);
+		a.addChild(this);
+		b.addChild(this);
 	}
 
 	/**
@@ -72,13 +72,13 @@ public class Spring extends Force
 	 * @param dependency
 	 */
 	@Override
-	public void OnDependencyDisposed(IParent dependency)
+	public void OnParentRemoved(Hierarchical dependency)
 	{
-		super.OnDependencyDisposed(dependency);
+		super.OnParentRemoved(dependency);
 		if (dependency == a)
-			b.removeDependent(this);
+			b.removeChild(this);
 		if (dependency == b)
-			a.removeDependent(this);
+			a.removeChild(this);
 		this.dispose();
 	}
 }

@@ -3,12 +3,11 @@ package com.wicpar.wicparbase.physics.system;
 import com.wicpar.wicparbase.mech.Base;
 import com.wicpar.wicparbase.physics.IForce;
 import com.wicpar.wicparbase.physics.IPhysical;
-import org.joml.Vector3d;
 
 /**
  * Created by Frederic on 19/11/2015 at 14:38.
  */
-public abstract class Force extends Hierearchical implements IForce
+public abstract class Force extends Hierarchical implements IForce
 {
 
 	@Override

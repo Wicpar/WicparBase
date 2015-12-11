@@ -1,11 +1,10 @@
 package com.wicpar.wicparbase.utils.defaults;
 
-import com.wicpar.wicparbase.mech.Base;
-import com.wicpar.wicparbase.physics.IChild;
 import com.wicpar.wicparbase.physics.IDynamical;
 import com.wicpar.wicparbase.physics.IForce;
 import com.wicpar.wicparbase.physics.IPhysical;
 import com.wicpar.wicparbase.physics.system.Force;
+import com.wicpar.wicparbase.physics.system.Hierarchical;
 import com.wicpar.wicparbase.physics.system.Physical;
 import com.wicpar.wicparbase.utils.Disposable;
 import com.wicpar.wicparbase.utils.plugins.IDynamicsHandler;
@@ -33,7 +32,7 @@ public class DefaultDynamicsHandler implements IDynamicsHandler
 		if (object instanceof Physical)
 		{
 			for (Force force : TWorldForces)
-				((Physical) object).addDependent(force);
+				((Physical) object).addChild(force);
 			return Tphysicals.add((Physical) object);
 		}
 		if (object instanceof IPhysical)
@@ -49,8 +48,8 @@ public class DefaultDynamicsHandler implements IDynamicsHandler
 			{
 				b = TWorldForces.add((Force) object);
 				for (Physical physical : Tphysicals)
-					if (!physical.hasDependent((IChild) object))
-						physical.addDependent((IChild) object);
+					if (!physical.hasChild((Hierarchical) object))
+						physical.addChild((Hierarchical) object);
 			}
 			return TForces.add((Force) object) && b;
 		}
@@ -77,7 +76,7 @@ public class DefaultDynamicsHandler implements IDynamicsHandler
 			{
 				TWorldForces.remove(object);
 				for (Physical physical : Tphysicals)
-					physical.removeDependent((IChild) object);
+					physical.removeChild((Hierarchical) object);
 			}
 			return TForces.remove(object);
 		}

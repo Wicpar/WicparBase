@@ -2,7 +2,6 @@ package com.wicpar.wicparbase.physics.system;
 
 import com.wicpar.wicparbase.mech.Base;
 import com.wicpar.wicparbase.physics.AABB;
-import com.wicpar.wicparbase.physics.IChild;
 import com.wicpar.wicparbase.physics.IForce;
 import com.wicpar.wicparbase.physics.IPhysical;
 import org.joml.Vector3d;
@@ -10,7 +9,7 @@ import org.joml.Vector3d;
 /**
  * Created by Frederic on 19/11/2015 at 14:39.
  */
-public class Physical extends Hierearchical implements IPhysical, Runnable
+public class Physical extends Hierarchical implements IPhysical, Runnable
 {
 	protected Vector3d pos, vel;
 	protected double mass, vol = 1;
