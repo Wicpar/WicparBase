@@ -6,5 +6,4 @@ package com.wicpar.wicparbase.physics;
 public interface IForce
 {
 	void UpdateForce(double delta);
-
 }
