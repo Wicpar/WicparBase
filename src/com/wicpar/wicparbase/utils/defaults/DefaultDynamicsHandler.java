@@ -1,11 +1,11 @@
 package com.wicpar.wicparbase.utils.defaults;
 
-import com.wicpar.wicparbase.physics.IDynamical;
-import com.wicpar.wicparbase.physics.IForce;
-import com.wicpar.wicparbase.physics.IPhysical;
-import com.wicpar.wicparbase.physics.system.Force;
-import com.wicpar.wicparbase.physics.system.Hierarchical;
-import com.wicpar.wicparbase.physics.system.Physical;
+import com.wicpar.wicparbase.oldphysics.IDynamical;
+import com.wicpar.wicparbase.oldphysics.IForce;
+import com.wicpar.wicparbase.oldphysics.IPhysical;
+import com.wicpar.wicparbase.oldphysics.system.Force;
+import com.wicpar.wicparbase.oldphysics.system.Hierarchical;
+import com.wicpar.wicparbase.oldphysics.system.Physical;
 import com.wicpar.wicparbase.utils.Disposable;
 import com.wicpar.wicparbase.utils.plugins.IDynamicsHandler;
 

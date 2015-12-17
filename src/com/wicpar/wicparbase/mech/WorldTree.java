@@ -1,10 +1,9 @@
 package com.wicpar.wicparbase.mech;
 
-import com.wicpar.wicparbase.physics.system.Hierarchical;
+import com.wicpar.wicparbase.oldphysics.system.Hierarchical;
 
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.List;
 
 /**
  * Created by Frederic on 11/12/2015 at 14:55.

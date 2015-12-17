@@ -1,13 +1,12 @@
-package com.wicpar.wicparbase.physics.system.Defaults;
+package com.wicpar.wicparbase.oldphysics.system.Defaults;
 
-import com.wicpar.wicparbase.physics.IPhysical;
-import com.wicpar.wicparbase.physics.system.Force;
+import com.wicpar.wicparbase.oldphysics.IPhysical;
 import org.joml.Vector3d;
 
 /**
  * Created by Frederic on 19/11/2015 at 18:14.
  */
-public class DragForce extends com.wicpar.wicparbase.physics.system.Force
+public class DragForce extends com.wicpar.wicparbase.oldphysics.system.Force
 {
 	protected double drag;
 	public DragForce(double drag)

@@ -1,9 +1,9 @@
-package com.wicpar.wicparbase.physics.system;
+package com.wicpar.wicparbase.oldphysics.system;
 
 import com.wicpar.wicparbase.mech.Base;
-import com.wicpar.wicparbase.physics.AABB;
-import com.wicpar.wicparbase.physics.IForce;
-import com.wicpar.wicparbase.physics.IPhysical;
+import com.wicpar.wicparbase.oldphysics.AABB;
+import com.wicpar.wicparbase.oldphysics.IForce;
+import com.wicpar.wicparbase.oldphysics.IPhysical;
 import org.joml.Vector3d;
 
 /**

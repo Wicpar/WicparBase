@@ -1,4 +1,4 @@
-package com.wicpar.wicparbase.physics;
+package com.wicpar.wicparbase.oldphysics;
 
 /**
  * Created by Frederic on 13/11/2015 at 19:02.

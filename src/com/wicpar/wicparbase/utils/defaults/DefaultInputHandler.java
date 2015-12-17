@@ -1,7 +1,6 @@
 package com.wicpar.wicparbase.utils.defaults;
 
 import com.wicpar.wicparbase.input.IInput;
-import com.wicpar.wicparbase.physics.system.Disposable;
 import com.wicpar.wicparbase.utils.plugins.IInputHandler;
 import org.lwjgl.glfw.*;
 
