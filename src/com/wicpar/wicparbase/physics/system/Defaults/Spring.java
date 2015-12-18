@@ -50,10 +50,4 @@ public class Spring extends Force
 		if (physical == b)
 			physical.getVel().add(new Vector3d(new Vector3d().set(posA).sub(posB).normalize().mul(force).add(new Vector3d(velA).sub(velB).mul(dampening))).div(physical.getMass()).mul(delta));
 	}
-
-	@Override
-	public boolean isWorldForce()
-	{
-		return false;
-	}
 }
