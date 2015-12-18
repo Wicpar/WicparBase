@@ -3,6 +3,11 @@ package com.wicpar.wicparbase.mech;
 import com.wicpar.wicparbase.api.DynamicsHandlerExtension;
 import com.wicpar.wicparbase.api.InputHandlerExtension;
 import com.wicpar.wicparbase.api.RendererExtension;
+import com.wicpar.wicparbase.graphics.IDrawable;
+import com.wicpar.wicparbase.physics.IDynamical;
+import com.wicpar.wicparbase.physics.IForce;
+import com.wicpar.wicparbase.physics.IPhysical;
+import com.wicpar.wicparbase.utils.ClassPool;
 import com.wicpar.wicparbase.utils.defaults.DefaultChooser;
 import com.wicpar.wicparbase.utils.error.ErrorDialog;
 import com.wicpar.wicparbase.utils.plugins.*;
@@ -29,6 +34,7 @@ public class Base
 	private static IRenderer renderer;
 	private static IInputHandler inputHandler;
 	private static IDynamicsHandler dynamicsHandler;
+	private static ClassPool classHandler = new ClassPool(IDynamical.class, IPhysical.class, IForce.class, IDrawable.class);
 
 	public Base()
 	{
