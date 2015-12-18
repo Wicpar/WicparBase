@@ -1,4 +1,4 @@
-package com.wicpar.wicparbase.oldphysics.system;
+package com.wicpar.wicparbase.physics.system;
 
 import java.util.LinkedList;
 

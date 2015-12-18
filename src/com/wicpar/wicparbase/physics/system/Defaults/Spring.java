@@ -1,9 +1,9 @@
-package com.wicpar.wicparbase.oldphysics.system.Defaults;
+package com.wicpar.wicparbase.physics.system.Defaults;
 
-import com.wicpar.wicparbase.oldphysics.IPhysical;
-import com.wicpar.wicparbase.oldphysics.system.Force;
-import com.wicpar.wicparbase.oldphysics.system.Hierarchical;
-import com.wicpar.wicparbase.oldphysics.system.Physical;
+import com.wicpar.wicparbase.physics.IPhysical;
+import com.wicpar.wicparbase.physics.system.Force;
+import com.wicpar.wicparbase.physics.system.Hierarchical;
+import com.wicpar.wicparbase.physics.system.Physical;
 import org.joml.Vector3d;
 
 /**

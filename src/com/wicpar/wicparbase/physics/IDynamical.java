@@ -1,9 +1,17 @@
 package com.wicpar.wicparbase.physics;
 
+import com.wicpar.wicparbase.utils.Disposable;
+
 /**
- * Created by Frederic on 17/12/2015 at 19:15.
+ * Created by Frederic on 04/10/2015 at 13:32.
  */
-public interface IDynamical
+public interface IDynamical extends Disposable
 {
-	void Update(double delta);
+	/**
+	 * should be used to update the forces.
+	 * Is called first
+	 * @param delta the time length of the frame in seconds
+	 */
+	void UpdateForces(double delta);
+
 }

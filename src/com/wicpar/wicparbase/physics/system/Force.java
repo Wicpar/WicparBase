@@ -1,8 +1,8 @@
-package com.wicpar.wicparbase.oldphysics.system;
+package com.wicpar.wicparbase.physics.system;
 
 import com.wicpar.wicparbase.mech.Base;
-import com.wicpar.wicparbase.oldphysics.IForce;
-import com.wicpar.wicparbase.oldphysics.IPhysical;
+import com.wicpar.wicparbase.physics.IForce;
+import com.wicpar.wicparbase.physics.IPhysical;
 
 /**
  * Created by Frederic on 19/11/2015 at 14:38.

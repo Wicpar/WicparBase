@@ -1,4 +1,4 @@
-package com.wicpar.wicparbase.oldphysics;
+package com.wicpar.wicparbase.physics;
 
 import org.joml.Vector3d;
 

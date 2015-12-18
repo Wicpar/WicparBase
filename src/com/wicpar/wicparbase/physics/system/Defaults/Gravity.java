@@ -1,7 +1,7 @@
-package com.wicpar.wicparbase.oldphysics.system.Defaults;
+package com.wicpar.wicparbase.physics.system.Defaults;
 
-import com.wicpar.wicparbase.oldphysics.IPhysical;
-import com.wicpar.wicparbase.oldphysics.system.Force;
+import com.wicpar.wicparbase.physics.IPhysical;
+import com.wicpar.wicparbase.physics.system.Force;
 
 /**
  * Created by Frederic on 19/11/2015 at 15:44.
