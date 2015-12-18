@@ -30,13 +30,6 @@ public class Physical extends Hierarchical implements IPhysical, Runnable
 		this(pos, new Vector3d(), mass, 1);
 	}
 
-	@Override
-	public void Initialize()
-	{
-		super.Initialize();
-		Base.getDynamicsHandler().addObject(this);
-	}
-
 	/**
 	 * Should be used to update the Physical properties of the object (EG shape, position)
 	 *
@@ -126,12 +119,5 @@ public class Physical extends Hierarchical implements IPhysical, Runnable
 		double delta = Base.getRenderer().getDeltaT();
 		UpdateForces(delta);
 		UpdatePhysicals(delta);
-	}
-
-	@Override
-	public void dispose()
-	{
-		super.dispose();
-		Base.getDynamicsHandler().removeObject(this);
 	}
 }
