@@ -11,6 +11,4 @@ public interface IForce
 	 * @param delta
 	 */
 	void ApplyForce(IPhysical physical, double delta);
-
-	boolean isWorldForce();
 }

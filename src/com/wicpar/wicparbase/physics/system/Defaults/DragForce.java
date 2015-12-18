@@ -26,10 +26,4 @@ public class DragForce extends com.wicpar.wicparbase.physics.system.Force
 		Vector3d vel = new Vector3d(physical.getVel());
 		physical.getVel().sub(vel.mul(drag * delta));
 	}
-
-	@Override
-	public boolean isWorldForce()
-	{
-		return true;
-	}
 }

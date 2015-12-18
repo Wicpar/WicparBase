@@ -18,6 +18,4 @@ public abstract class Force extends Disposable implements IForce
 	@Override
 	public abstract void ApplyForce(IPhysical physical, double delta);
 
-	@Override
-	public abstract boolean isWorldForce();
 }

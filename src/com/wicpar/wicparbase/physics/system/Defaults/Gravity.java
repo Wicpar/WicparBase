@@ -21,9 +21,4 @@ public class Gravity extends Force
 		physical.getVel().add(0,-9.81 * delta, 0);
 	}
 
-	@Override
-	public boolean isWorldForce()
-	{
-		return true;
-	}
 }
