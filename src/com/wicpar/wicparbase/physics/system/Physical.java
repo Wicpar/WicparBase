@@ -6,13 +6,17 @@ import com.wicpar.wicparbase.physics.IForce;
 import com.wicpar.wicparbase.physics.IPhysical;
 import org.joml.Vector3d;
 
+import java.util.LinkedList;
+
 /**
  * Created by Frederic on 19/11/2015 at 14:39.
  */
-public class Physical extends Hierarchical implements IPhysical, Runnable
+public class Physical extends Disposable implements IPhysical, Runnable
 {
 	protected Vector3d pos, vel;
 	protected double mass, vol = 1;
+
+	private final LinkedList<IForce> forces = new LinkedList<>();
 
 	public Physical(Vector3d pos, Vector3d vel, double mass, double vol)
 	{
@@ -39,6 +43,18 @@ public class Physical extends Hierarchical implements IPhysical, Runnable
 	public void UpdatePhysicals(double delta)
 	{
 		pos.add(new Vector3d(vel).mul(delta));
+	}
+
+	@Override
+	public void bindForce(IForce force)
+	{
+		forces.add(force);
+	}
+
+	@Override
+	public void unbindForce(IForce force)
+	{
+		forces.remove(force);
 	}
 
 	@Override
@@ -110,7 +126,10 @@ public class Physical extends Hierarchical implements IPhysical, Runnable
 	@Override
 	public void UpdateForces(double delta)
 	{
-		childs.stream().filter(child -> child instanceof IForce).forEach(child -> ((IForce) child).ApplyForce(this, delta));
+		for (IForce force : forces)
+		{
+			force.ApplyForce(this, delta);
+		}
 	}
 
 	@Override

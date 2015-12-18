@@ -2,7 +2,6 @@ package com.wicpar.wicparbase.physics.system.Defaults;
 
 import com.wicpar.wicparbase.physics.IPhysical;
 import com.wicpar.wicparbase.physics.system.Force;
-import com.wicpar.wicparbase.physics.system.Hierarchical;
 import com.wicpar.wicparbase.physics.system.Physical;
 import org.joml.Vector3d;
 
@@ -23,14 +22,6 @@ public class Spring extends Force
 		this.stiffness = stiffness;
 		dst = a.getPos().distance(b.getPos());
 
-	}
-
-	@Override
-	public void Initialize()
-	{
-		super.Initialize();
-		a.addChild(this);
-		b.addChild(this);
 	}
 
 	/**
@@ -64,21 +55,5 @@ public class Spring extends Force
 	public boolean isWorldForce()
 	{
 		return false;
-	}
-
-	/**
-	 * Should be called by a dependency on every dependent when it gets disposed
-	 *
-	 * @param dependency
-	 */
-	@Override
-	public void OnParentRemoved(Hierarchical dependency)
-	{
-		super.OnParentRemoved(dependency);
-		if (dependency == a)
-			b.removeChild(this);
-		if (dependency == b)
-			a.removeChild(this);
-		this.dispose();
 	}
 }

@@ -12,6 +12,8 @@ public interface IPhysical extends IDynamical
 	 * @param delta
 	 */
 	void UpdatePhysicals(double delta);
+	void bindForce(IForce force);
+	void unbindForce(IForce force);
 	void ApplyForce(Vector3d force, double DeltaT);
 	void ApplyImpulse(Vector3d impulse);
 	void SetVel(Vector3d vel);

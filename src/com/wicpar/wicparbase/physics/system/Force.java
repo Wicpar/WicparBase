@@ -7,15 +7,8 @@ import com.wicpar.wicparbase.physics.IPhysical;
 /**
  * Created by Frederic on 19/11/2015 at 14:38.
  */
-public abstract class Force extends Hierarchical implements IForce
+public abstract class Force extends Disposable implements IForce
 {
-
-	@Override
-	public void Initialize()
-	{
-		super.Initialize();
-		Base.getDynamicsHandler().addObject(this);
-	}
 	/**
 	 * called every frame to apply force on a physical object.
 	 *
@@ -27,11 +20,4 @@ public abstract class Force extends Hierarchical implements IForce
 
 	@Override
 	public abstract boolean isWorldForce();
-
-	@Override
-	public void dispose()
-	{
-		super.dispose();
-		Base.getDynamicsHandler().removeObject(this);
-	}
 }
