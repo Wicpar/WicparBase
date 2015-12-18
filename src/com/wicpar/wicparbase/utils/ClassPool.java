@@ -23,6 +23,11 @@ public class ClassPool
 		CreateClasses(Handles);
 	}
 
+	public ClassPool(ClassPool parent)
+	{
+		this((Class[]) parent.classpools.keySet().toArray());
+	}
+
 	public void addClass(Object... c)
 	{
 		for (Object o : c)
