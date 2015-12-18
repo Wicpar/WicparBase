@@ -1,6 +1,8 @@
 package com.wicpar.wicparbase.utils.defaults;
 
 import com.wicpar.wicparbase.graphics.IDrawable;
+import com.wicpar.wicparbase.mech.Base;
+import com.wicpar.wicparbase.physics.IDynamical;
 import com.wicpar.wicparbase.utils.plugins.IRenderer;
 import com.wicpar.wicparbase.utils.timing.Timer;
 import org.lwjgl.glfw.GLFW;
@@ -27,7 +29,6 @@ public class DefaultRenderer implements IRenderer
 	private final Map<String,Long> windows = new HashMap<>();
 	private long MainWindow;
 	private GLFWErrorCallback errorCallback;
-	private final LinkedList<IDrawable> drawables = new LinkedList<>();
 	private final Timer timer = new Timer(1./30.);
 
 	@Override
@@ -94,24 +95,11 @@ public class DefaultRenderer implements IRenderer
 	}
 
 	@Override
-	public boolean addDrawable(IDrawable drawable)
-	{
-		return drawables.add(drawable);
-	}
-
-	@Override
-	public boolean removeDrawable(IDrawable drawable)
-	{
-		return drawables.remove(drawable);
-	}
-
-	@Override
 	public void render()
 	{
-		for (IDrawable drawable : drawables)
-		{
-			drawable.draw();
-		}
+		Base.getClassHandler().UpdateClass((c, params) -> {
+			((IDrawable) c).draw();
+		}, IDrawable.class);
 		glfwSwapBuffers(MainWindow);
 	}
 

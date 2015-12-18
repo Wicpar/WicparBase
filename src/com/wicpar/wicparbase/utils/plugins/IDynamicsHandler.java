@@ -5,8 +5,5 @@ package com.wicpar.wicparbase.utils.plugins;
  */
 public interface IDynamicsHandler
 {
-	Object addObject(Object object);
-	Object removeObject(Object object);
-	int getObjectNum(Class c);
 	void update(double delta);
 }

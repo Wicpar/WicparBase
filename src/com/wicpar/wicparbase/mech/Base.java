@@ -34,6 +34,7 @@ public class Base
 	private static IRenderer renderer;
 	private static IInputHandler inputHandler;
 	private static IDynamicsHandler dynamicsHandler;
+
 	private static ClassPool classHandler = new ClassPool(IDynamical.class, IPhysical.class, IForce.class, IDrawable.class);
 
 	public Base()
@@ -113,6 +114,7 @@ public class Base
 			inputHandler.PollEvents();
 			dynamicsHandler.update(renderer.getDeltaT());
 			renderer.render();
+			classHandler.RelaodClasses();
 		}
 		logger.debug("Executing OnGameFinish();");
 		for (Injector j : injectors)
@@ -188,6 +190,12 @@ public class Base
 	public static IDynamicsHandler getDynamicsHandler()
 	{
 		return dynamicsHandler;
+	}
+
+
+	public static ClassPool getClassHandler()
+	{
+		return classHandler;
 	}
 
 	public static String getClassPluginID(Class c)

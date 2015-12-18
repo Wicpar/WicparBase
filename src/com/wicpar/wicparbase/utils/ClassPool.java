@@ -10,7 +10,7 @@ public class ClassPool
 {
 	private final LinkedList<Object> objects = new LinkedList<>();
 	private final HashMap<Class, LinkedList> classpools = new HashMap<>();
-	private boolean shouldUpdate = false;
+	private boolean shouldUpdate = false, Updated = false;
 
 	public ClassPool()
 	{
@@ -43,11 +43,16 @@ public class ClassPool
 
 	public void RelaodClasses()
 	{
+		if (Updated)
+			Updated = false;
 		if (shouldUpdate)
+		{
 			for (Class aClass : classpools.keySet())
 			{
 				RelaodClass(aClass);
 			}
+			Updated = true;
+		}
 		shouldUpdate = false;
 	}
 
@@ -69,6 +74,11 @@ public class ClassPool
 			ClassPool classPool = (ClassPool) o;
 			classPool.UpdateClass(updater, c, params);
 		}
+	}
+
+	public boolean hasUpdated()
+	{
+		return Updated;
 	}
 
 	private void RelaodClass(Class c)

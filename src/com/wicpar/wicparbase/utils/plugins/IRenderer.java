@@ -16,8 +16,6 @@ public interface IRenderer
 	double getDeltaT();
 	double getTimeFromStart();
 	void preLoop();
-	boolean addDrawable(IDrawable drawable);
-	boolean removeDrawable(IDrawable drawable);
 	void render();
 	boolean getLoopCondition();
 }
