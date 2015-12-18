@@ -1,6 +1,5 @@
 package com.wicpar.wicparbase.utils;
 
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.LinkedList;
 
@@ -15,10 +14,12 @@ public class ClassPool
 
 	public ClassPool()
 	{
+		CreateClasses(getClass());
 	}
 
 	public ClassPool(Class... Handles)
 	{
+		this();
 		CreateClasses(Handles);
 	}
 
@@ -42,26 +43,32 @@ public class ClassPool
 
 	public void RelaodClasses()
 	{
-		for (Class aClass : classpools.keySet())
-		{
-			RelaodClass(aClass);
-		}
+		if (shouldUpdate)
+			for (Class aClass : classpools.keySet())
+			{
+				RelaodClass(aClass);
+			}
 		shouldUpdate = false;
 	}
 
 	public void UpdateClass(Updater updater, Class c, Object... params)
 	{
 		LinkedList<Object> tmp;
+		tmp = classpools.get(c);
+		if (tmp == null)
+		{
+			CreateClasses(c);
 			tmp = classpools.get(c);
-			if (tmp == null)
-			{
-				CreateClasses(c);
-				tmp = classpools.get(c);
-			}
-			for (Object o : tmp)
-			{
-				updater.Update(o, params);
-			}
+		}
+		for (Object o : tmp)
+		{
+			updater.Update(o, params);
+		}
+		for (Object o : classpools.get(this.getClass()))
+		{
+			ClassPool classPool = (ClassPool) o;
+			classPool.UpdateClass(updater, c, params);
+		}
 	}
 
 	private void RelaodClass(Class c)
