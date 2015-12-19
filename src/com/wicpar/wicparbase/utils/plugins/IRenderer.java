@@ -13,9 +13,6 @@ public interface IRenderer
 	void Init();
 	Collection<Long> getWindows();
 	long getWindow(String name);
-	double getDeltaT();
-	double getTimeFromStart();
-	void preLoop();
-	void render();
+	void render(double delta);
 	boolean getLoopCondition();
 }

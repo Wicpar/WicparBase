@@ -29,7 +29,6 @@ public class DefaultRenderer implements IRenderer
 	private final Map<String,Long> windows = new HashMap<>();
 	private long MainWindow;
 	private GLFWErrorCallback errorCallback;
-	private final Timer timer = new Timer(1./30.);
 
 	@Override
 	public void Init()
@@ -76,31 +75,13 @@ public class DefaultRenderer implements IRenderer
 	}
 
 	@Override
-	public double getDeltaT()
-	{
-		return timer.getCurrent(timer.SECOND);
-	}
-
-	@Override
-	public double getTimeFromStart()
-	{
-		return timer.getFromStart(Timer.SECOND);
-	}
-
-	@Override
-	public void preLoop()
-	{
-		timer.update();
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-	}
-
-	@Override
-	public void render()
+	public void render(double delta)
 	{
 		Base.getClassHandler().UpdateClass((c, params) -> {
 			((IDrawable) c).draw();
 		}, IDrawable.class);
 		glfwSwapBuffers(MainWindow);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	}
 
 	@Override

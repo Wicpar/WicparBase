@@ -11,6 +11,7 @@ import com.wicpar.wicparbase.utils.ClassPool;
 import com.wicpar.wicparbase.utils.defaults.DefaultChooser;
 import com.wicpar.wicparbase.utils.error.ErrorDialog;
 import com.wicpar.wicparbase.utils.plugins.*;
+import com.wicpar.wicparbase.utils.timing.Timer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ro.fortsoft.pf4j.DefaultPluginManager;
@@ -21,6 +22,7 @@ import ro.fortsoft.pf4j.PluginWrapper;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.Delayed;
 
 /**
  * Created by Frederic on 11/09/2015 at 20:11.
@@ -34,6 +36,7 @@ public class Base
 	private static IRenderer renderer;
 	private static IInputHandler inputHandler;
 	private static IDynamicsHandler dynamicsHandler;
+	private static Timer time = new Timer(1/30.);
 
 	private static ClassPool classHandler = new ClassPool(IDynamical.class, IPhysical.class, IForce.class, IDrawable.class);
 
@@ -110,10 +113,11 @@ public class Base
 		}
 		while (renderer.getLoopCondition())
 		{
-			renderer.preLoop();
+			time.update();
+			double deltaT = time.getDelta();
 			inputHandler.PollEvents();
-			dynamicsHandler.update(renderer.getDeltaT());
-			renderer.render();
+			dynamicsHandler.update(deltaT);
+			renderer.render(deltaT);
 			classHandler.ReloadClasses();
 		}
 		logger.debug("Executing OnGameFinish();");
@@ -192,6 +196,10 @@ public class Base
 		return dynamicsHandler;
 	}
 
+	public static double getDelta()
+	{
+		return time.getDelta();
+	}
 
 	public static ClassPool getClassHandler()
 	{

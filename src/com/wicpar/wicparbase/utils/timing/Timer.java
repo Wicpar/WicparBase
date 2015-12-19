@@ -5,36 +5,43 @@ package com.wicpar.wicparbase.utils.timing;
  */
 public class Timer
 {
-	public static final int SECOND = 1000000000;
-	public static final int MILI = 1000000;
-	public static final int NANO = 1;
-
-	private final long STime;
-	private long FTime;
-	private final double minDelta;
-	private double curdelta;
+	private long FTime, TTime;
+	private final long minDelta;
+	private long curdelta;
 
 	public Timer(double minDelta)
 	{
-		STime = System.nanoTime();
-		FTime = STime;
-		this.minDelta = minDelta;
-		curdelta = minDelta;
+		TTime = 0;
+		FTime = System.nanoTime();
+		this.minDelta = (long) (minDelta * 1000000000);
+		curdelta = this.minDelta;
 	}
 
 	public void update()
 	{
-		curdelta = Math.max((((double) (System.nanoTime() - FTime)) / SECOND),minDelta);
-		FTime += getCurrent(NANO);
+		curdelta = System.nanoTime() - FTime;
+		FTime += curdelta;
+		curdelta = Math.min(curdelta, minDelta);
+		TTime += curdelta;
 	}
 
-	public double getCurrent(int unit)
+	public long getDeltaNano()
 	{
-		return (unit == SECOND) ? curdelta : ((curdelta * SECOND) / unit);
+		return curdelta;
 	}
 
-	public double getFromStart(int unit)
+	public double getDelta()
 	{
-		return (((double) (FTime - STime)) / unit);
+		return (double)curdelta / 1000000000;
+	}
+
+	public long getFromStartNano()
+	{
+		return TTime;
+	}
+
+	public double getFromStart()
+	{
+		return (double)TTime / 1000000000;
 	}
 }
