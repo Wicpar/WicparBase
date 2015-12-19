@@ -77,9 +77,7 @@ public class DefaultRenderer implements IRenderer
 	@Override
 	public void render(double delta)
 	{
-		Base.getClassHandler().UpdateClass((c, params) -> {
-			((IDrawable) c).draw();
-		}, IDrawable.class);
+		Base.getClassHandler().UpdateClass((c, params) -> ((IDrawable) c).draw(), IDrawable.class);
 		glfwSwapBuffers(MainWindow);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 	}

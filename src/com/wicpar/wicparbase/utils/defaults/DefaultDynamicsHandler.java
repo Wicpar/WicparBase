@@ -4,11 +4,8 @@ import com.wicpar.wicparbase.mech.Base;
 import com.wicpar.wicparbase.physics.IDynamical;
 import com.wicpar.wicparbase.physics.IForce;
 import com.wicpar.wicparbase.physics.IPhysical;
-import com.wicpar.wicparbase.physics.system.Physical;
-import com.wicpar.wicparbase.utils.Disposable;
 import com.wicpar.wicparbase.utils.plugins.IDynamicsHandler;
 
-import java.util.Iterator;
 import java.util.LinkedList;
 
 /**
@@ -29,6 +26,13 @@ public class DefaultDynamicsHandler implements IDynamicsHandler
 				forces.add((IForce) c);
 			}, IForce.class);
 		}
+
+		Base.getClassHandler().UpdateClass((c, params) -> {
+			for (IForce force : forces)
+			{
+				force.ApplyForce((IPhysical) c, (Double) params[0]);
+			}
+		}, IPhysical.class, delta);
 
 		Base.getClassHandler().UpdateClass((c, params) -> {
 			((IDynamical) c).UpdateForces((Double) params[0]);
