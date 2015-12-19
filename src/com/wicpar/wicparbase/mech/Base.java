@@ -35,7 +35,7 @@ public class Base
 	private static IRenderer renderer;
 	private static IInputHandler inputHandler;
 	private static IDynamicsHandler dynamicsHandler;
-	private static Timer time = new Timer(1 / 10.);
+	private static Timer time = new Timer(1 / 30.);
 
 	private static ClassPool classHandler = new ClassPool(IDynamical.class, IPhysical.class, IForce.class, IDrawable.class);
 
