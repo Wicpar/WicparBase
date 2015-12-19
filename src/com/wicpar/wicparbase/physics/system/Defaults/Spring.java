@@ -40,17 +40,15 @@ public class Spring extends Force
 			velB = new Vector3d(b.getVel());
 		}
 		double stretch = posA.distance(posB) - dst;
-		lastForce = stiffness * stretch;
-
+		Vector3d x = new Vector3d(posA).sub(posB).normalize().mul(stretch).mul(stiffness).sub(new Vector3d(velB).sub(velA).mul(dampening));
+		lastForce = x.length();
 		if (physical == a)
 		{
-			physical.getVel().add(new Vector3d(posB).sub(posA).normalize().mul(lastForce).div(physical.getMass()).mul(delta));
-			physical.getVel().add(new Vector3d(velB).sub(velA).mul(dampening).mul(delta));
+			physical.getVel().add(new Vector3d(x).negate().div(physical.getMass()).mul(delta));
 		}
 		if (physical == b)
 		{
-			physical.getVel().add(new Vector3d(posA).sub(posB).normalize().mul(lastForce).div(physical.getMass()).mul(delta));
-			physical.getVel().add(new Vector3d(velA).sub(velB).mul(dampening).mul(delta));
+			physical.getVel().add(new Vector3d(x).div(physical.getMass()).mul(delta));
 		}
 		return false;
 	}
