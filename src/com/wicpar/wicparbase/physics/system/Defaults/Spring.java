@@ -21,7 +21,8 @@ public class Spring extends Force
 		this.dampening = dampening;
 		this.stiffness = stiffness;
 		dst = a.getPos().distance(b.getPos());
-
+		a.bindForce(this);
+		b.bindForce(this);
 	}
 
 	/**
@@ -49,5 +50,13 @@ public class Spring extends Force
 			physical.getVel().add(new Vector3d(new Vector3d().set(posB).sub(posA).normalize().mul(lastForce).add(new Vector3d(velB).sub(velA).mul(dampening))).div(physical.getMass()).mul(delta));
 		if (physical == b)
 			physical.getVel().add(new Vector3d(new Vector3d().set(posA).sub(posB).normalize().mul(lastForce).add(new Vector3d(velA).sub(velB).mul(dampening))).div(physical.getMass()).mul(delta));
+	}
+
+	@Override
+	public void dispose()
+	{
+		super.dispose();
+		a.unbindForce(this);
+		b.unbindForce(this);
 	}
 }
