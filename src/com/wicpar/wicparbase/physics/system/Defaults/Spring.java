@@ -28,6 +28,8 @@ public class Spring extends Force
 	@Override
 	public boolean ApplyForce(IPhysical physical, double delta)
 	{
+		if (isDisposed())
+			return true;
 		Vector3d posA, posB, velA, velB;
 		synchronized (a){
 			posA = new Vector3d(a.getPos());
