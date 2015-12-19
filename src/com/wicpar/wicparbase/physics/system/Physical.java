@@ -17,7 +17,7 @@ public class Physical extends Disposable implements IPhysical, Runnable
 	protected Vector3d pos, vel;
 	protected double mass, vol = 1;
 
-	private final LinkedList<IForce> forces = new LinkedList<>();
+	protected final LinkedList<IForce> forces = new LinkedList<>();
 
 	public Physical(Vector3d pos, Vector3d vel, double mass, double vol)
 	{
