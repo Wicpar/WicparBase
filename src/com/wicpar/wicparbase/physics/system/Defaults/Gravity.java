@@ -16,9 +16,10 @@ public class Gravity extends Force
 	 * @param delta
 	 */
 	@Override
-	public void ApplyForce(IPhysical physical, double delta)
+	public boolean ApplyForce(IPhysical physical, double delta)
 	{
 		physical.getVel().add(0,-9.81 * delta, 0);
+		return false;
 	}
 
 }
