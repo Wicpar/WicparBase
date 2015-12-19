@@ -114,7 +114,7 @@ public class Base
 			inputHandler.PollEvents();
 			dynamicsHandler.update(renderer.getDeltaT());
 			renderer.render();
-			classHandler.RelaodClasses();
+			classHandler.ReloadClasses();
 		}
 		logger.debug("Executing OnGameFinish();");
 		for (Injector j : injectors)

@@ -46,7 +46,7 @@ public class ClassPool
 		shouldUpdate = true;
 	}
 
-	public void RelaodClasses()
+	public void ReloadClasses()
 	{
 		if (Updated)
 			Updated = false;
