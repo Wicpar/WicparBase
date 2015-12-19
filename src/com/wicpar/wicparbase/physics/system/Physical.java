@@ -6,6 +6,7 @@ import com.wicpar.wicparbase.physics.IForce;
 import com.wicpar.wicparbase.physics.IPhysical;
 import org.joml.Vector3d;
 
+import java.util.Iterator;
 import java.util.LinkedList;
 
 /**
@@ -126,9 +127,11 @@ public class Physical extends Disposable implements IPhysical, Runnable
 	@Override
 	public void UpdateForces(double delta)
 	{
-		for (IForce force : forces)
+		for (Iterator<IForce> iterator = forces.iterator(); iterator.hasNext(); )
 		{
-			force.ApplyForce(this, delta);
+			IForce force = iterator.next();
+			if (force.ApplyForce(this, delta))
+				iterator.remove();
 		}
 	}
 

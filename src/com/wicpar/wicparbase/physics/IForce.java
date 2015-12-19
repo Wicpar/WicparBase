@@ -9,6 +9,7 @@ public interface IForce
 	 * called every frame to apply force on a physical object. the extensions should be made thread safe.
 	 * @param physical the physical to apply a force to.
 	 * @param delta
+	 * @return if the force should be discarded
 	 */
-	void ApplyForce(IPhysical physical, double delta);
+	boolean ApplyForce(IPhysical physical, double delta);
 }

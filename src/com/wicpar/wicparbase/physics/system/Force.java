@@ -16,6 +16,6 @@ public abstract class Force extends Disposable implements IForce
 	 * @param delta
 	 */
 	@Override
-	public abstract void ApplyForce(IPhysical physical, double delta);
+	public abstract boolean ApplyForce(IPhysical physical, double delta);
 
 }

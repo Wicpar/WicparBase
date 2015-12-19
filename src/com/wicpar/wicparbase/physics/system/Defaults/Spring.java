@@ -25,14 +25,8 @@ public class Spring extends Force
 		b.bindForce(this);
 	}
 
-	/**
-	 * called every frame to apply force on a physical object. the extensions should be made thread safe.
-	 *
-	 * @param physical the physical to apply a force to.
-	 * @param delta
-	 */
 	@Override
-	public synchronized void ApplyForce(IPhysical physical, double delta)
+	public boolean ApplyForce(IPhysical physical, double delta)
 	{
 		Vector3d posA, posB, velA, velB;
 		synchronized (a){
@@ -50,13 +44,6 @@ public class Spring extends Force
 			physical.getVel().add(new Vector3d(new Vector3d().set(posB).sub(posA).normalize().mul(lastForce).add(new Vector3d(velB).sub(velA).mul(dampening))).div(physical.getMass()).mul(delta));
 		if (physical == b)
 			physical.getVel().add(new Vector3d(new Vector3d().set(posA).sub(posB).normalize().mul(lastForce).add(new Vector3d(velA).sub(velB).mul(dampening))).div(physical.getMass()).mul(delta));
-	}
-
-	@Override
-	public void dispose()
-	{
-		super.dispose();
-		a.unbindForce(this);
-		b.unbindForce(this);
+		return false;
 	}
 }
