@@ -135,7 +135,7 @@ public class Physical extends Disposable implements IPhysical, Runnable
 	@Override
 	public void run()
 	{
-		double delta = Base.getRenderer().getDeltaT();
+		double delta = Base.getDelta();
 		UpdateForces(delta);
 		UpdatePhysicals(delta);
 	}
