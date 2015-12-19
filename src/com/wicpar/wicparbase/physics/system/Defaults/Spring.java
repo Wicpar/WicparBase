@@ -44,12 +44,12 @@ public class Spring extends Force
 
 		if (physical == a)
 		{
-			physical.getVel().add(new Vector3d(new Vector3d().set(posB).sub(posA).normalize().mul(lastForce)).div(physical.getMass()).mul(delta));
+			physical.getVel().add(new Vector3d(posB).sub(posA).normalize().mul(lastForce).div(physical.getMass()).mul(delta));
 			physical.getVel().add(new Vector3d(velB).sub(velA).mul(dampening).mul(delta));
 		}
 		if (physical == b)
 		{
-			physical.getVel().add(new Vector3d(new Vector3d().set(posA).sub(posB).normalize().mul(lastForce)).div(physical.getMass()).mul(delta));
+			physical.getVel().add(new Vector3d(posA).sub(posB).normalize().mul(lastForce).div(physical.getMass()).mul(delta));
 			physical.getVel().add(new Vector3d(velA).sub(velB).mul(dampening).mul(delta));
 		}
 		return false;
