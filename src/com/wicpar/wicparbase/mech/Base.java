@@ -22,7 +22,6 @@ import ro.fortsoft.pf4j.PluginWrapper;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.Delayed;
 
 /**
  * Created by Frederic on 11/09/2015 at 20:11.
@@ -36,7 +35,7 @@ public class Base
 	private static IRenderer renderer;
 	private static IInputHandler inputHandler;
 	private static IDynamicsHandler dynamicsHandler;
-	private static Timer time = new Timer(1/30.);
+	private static Timer time = new Timer(1 / 30.);
 
 	private static ClassPool classHandler = new ClassPool(IDynamical.class, IPhysical.class, IForce.class, IDrawable.class);
 
@@ -199,6 +198,11 @@ public class Base
 	public static double getDelta()
 	{
 		return time.getDelta();
+	}
+
+	public static double getTimePassed()
+	{
+		return time.getFromStart();
 	}
 
 	public static ClassPool getClassHandler()
