@@ -24,7 +24,7 @@ public class DragForce extends com.wicpar.wicparbase.physics.system.Force
 	public boolean ApplyForce(IPhysical physical, double delta)
 	{
 		Vector3d vel = new Vector3d(physical.getVel());
-		physical.getVel().sub(vel.mul(drag * delta));
+		physical.ApplyImpulse(vel.mul(drag));
 		return false;
 	}
 }

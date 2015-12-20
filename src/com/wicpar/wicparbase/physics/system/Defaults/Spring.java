@@ -44,11 +44,11 @@ public class Spring extends Force
 		lastForce = x.length();
 		if (physical == a)
 		{
-			physical.getVel().add(new Vector3d(x).negate().div(physical.getMass()).mul(delta));
+			physical.ApplyForce(new Vector3d(x).negate());
 		}
 		if (physical == b)
 		{
-			physical.getVel().add(new Vector3d(x).div(physical.getMass()).mul(delta));
+			physical.ApplyForce(new Vector3d(x));
 		}
 		return false;
 	}
