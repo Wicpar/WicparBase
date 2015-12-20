@@ -44,23 +44,16 @@ public class Spring extends Force
 		double stretch = posA.distance(posB) - dst;
 		Vector3d norm = new Vector3d(posA).sub(posB).normalize();
 		Vector3d x = new Vector3d(norm).mul(stretch > 0 ? stretch * stiffness : stretch * stiffness);
-		Vector3d disp = null;
-		if (stretch < 0)
-			disp = new Vector3d(norm).mul(stretch / 2);
 		lastForce = stretch * stiffness;
 		if (physical == a)
 		{
 			physical.applyForce(new Vector3d(x).negate());
 			physical.applyForce(new Vector3d(velA).sub(velB).mul(dampening));
-			if (stretch < 0)
-				physical.move(new Vector3d(disp).negate());
 		}
 		if (physical == b)
 		{
 			physical.applyForce(x);
 			physical.applyForce(new Vector3d(velA).sub(velB).mul(-dampening));
-			if (stretch < 0)
-				physical.move(new Vector3d(disp));
 		}
 		return false;
 	}
