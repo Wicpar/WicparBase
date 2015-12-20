@@ -14,7 +14,7 @@ import java.util.LinkedList;
  */
 public class Physical extends Disposable implements IPhysical, Runnable
 {
-	protected Vector3d pos, vel, force = new Vector3d(), impulse = new Vector3d();
+	protected Vector3d pos, vel, force = new Vector3d(), impulse = new Vector3d(), tomove = new Vector3d();
 	protected double mass, vol = 1;
 
 	protected final LinkedList<IForce> forces = new LinkedList<>();
@@ -44,6 +44,8 @@ public class Physical extends Disposable implements IPhysical, Runnable
 	public void UpdatePhysicals(double delta)
 	{
 		pos.add(new Vector3d(vel).mul(delta));
+		pos.add(tomove);
+		tomove.set(0,0,0);
 	}
 
 	@Override
@@ -59,25 +61,31 @@ public class Physical extends Disposable implements IPhysical, Runnable
 	}
 
 	@Override
-	public void ApplyForce(Vector3d force)
+	public void applyForce(Vector3d force)
 	{
 		this.force.add(force);
 	}
 
 	@Override
-	public void ApplyImpulse(Vector3d impulse)
+	public void applyImpulse(Vector3d impulse)
 	{
 		this.impulse.add(impulse);
 	}
 
 	@Override
-	public void SetVel(Vector3d vel)
+	public void move(Vector3d trans)
+	{
+		tomove.add(trans);
+	}
+
+	@Override
+	public void setVel(Vector3d vel)
 	{
 		this.vel.set(vel);
 	}
 
 	@Override
-	public void SetPos(Vector3d pos)
+	public void setPos(Vector3d pos)
 	{
 		this.pos.set(pos);
 	}

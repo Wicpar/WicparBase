@@ -11,7 +11,7 @@ import org.joml.Vector3d;
 public class Spring extends Force
 {
 
-	protected Physical a,b;
+	protected Physical a, b;
 	protected double dampening, stiffness, dst, lastForce;
 
 	public Spring(Physical a, Physical b, double dampening, double stiffness)
@@ -31,24 +31,36 @@ public class Spring extends Force
 		if (isDisposed())
 			return true;
 		Vector3d posA, posB, velA, velB;
-		synchronized (a){
+		synchronized (a)
+		{
 			posA = new Vector3d(a.getPos());
 			velA = new Vector3d(a.getVel());
 		}
-		synchronized (b){
+		synchronized (b)
+		{
 			posB = new Vector3d(b.getPos());
 			velB = new Vector3d(b.getVel());
 		}
 		double stretch = posA.distance(posB) - dst;
-		Vector3d x = new Vector3d(posA).sub(posB).normalize().mul(stretch).mul(stiffness).sub(new Vector3d(velA).sub(velB).mul(dampening));
-		lastForce = x.length();
+		Vector3d norm = new Vector3d(posA).sub(posB).normalize();
+		Vector3d x = new Vector3d(norm).mul(stretch > 0 ? stretch * stiffness : stretch * stiffness);
+		Vector3d disp = null;
+		if (stretch < 0)
+			disp = new Vector3d(norm).mul(stretch / 2);
+		lastForce = stretch * stiffness;
 		if (physical == a)
 		{
-			physical.ApplyForce(new Vector3d(x).negate());
+			physical.applyForce(new Vector3d(x).negate());
+			physical.applyForce(new Vector3d(velA).sub(velB).mul(dampening));
+			if (stretch < 0)
+				physical.move(new Vector3d(disp).negate());
 		}
 		if (physical == b)
 		{
-			physical.ApplyForce(new Vector3d(x));
+			physical.applyForce(x);
+			physical.applyForce(new Vector3d(velA).sub(velB).mul(-dampening));
+			if (stretch < 0)
+				physical.move(new Vector3d(disp));
 		}
 		return false;
 	}

@@ -19,7 +19,7 @@ public class Gravity extends Force
 	@Override
 	public boolean ApplyForce(IPhysical physical, double delta)
 	{
-		physical.ApplyForce(new Vector3d(0,-9.81, 0).mul(physical.getMass()));
+		physical.applyForce(new Vector3d(0,-9.81, 0).mul(physical.getMass()));
 		return false;
 	}
 
