@@ -61,13 +61,13 @@ public class Physical extends Disposable implements IPhysical, Runnable
 	@Override
 	public void ApplyForce(Vector3d force)
 	{
-		force.add(force);
+		this.force.add(force);
 	}
 
 	@Override
 	public void ApplyImpulse(Vector3d impulse)
 	{
-		impulse.add(impulse);
+		this.impulse.add(impulse);
 	}
 
 	@Override
