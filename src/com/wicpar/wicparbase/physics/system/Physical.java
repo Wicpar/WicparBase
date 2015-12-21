@@ -26,10 +26,12 @@ public class Physical extends Disposable implements IPhysical, Runnable
 		this.mass = mass;
 		this.vol = vol;
 	}
+
 	public Physical(Vector3d pos, Vector3d vel, double mass)
 	{
 		this(pos, vel, mass, 1);
 	}
+
 	public Physical(Vector3d pos, double mass)
 	{
 		this(pos, new Vector3d(), mass, 1);
@@ -45,7 +47,7 @@ public class Physical extends Disposable implements IPhysical, Runnable
 	{
 		pos.add(new Vector3d(vel).mul(delta));
 		pos.add(tomove);
-		tomove.set(0,0,0);
+		tomove.set(0, 0, 0);
 	}
 
 	@Override
@@ -138,13 +140,17 @@ public class Physical extends Disposable implements IPhysical, Runnable
 		for (Iterator<IForce> iterator = forces.iterator(); iterator.hasNext(); )
 		{
 			IForce force = iterator.next();
-			if (force.ApplyForce(this, delta))
+			if (force.ApplyForce(this, delta) || (force instanceof com.wicpar.wicparbase.utils.Disposable && ((com.wicpar.wicparbase.utils.Disposable) force).isDisposed()))
+			{
+				if (force instanceof com.wicpar.wicparbase.utils.Disposable && !((com.wicpar.wicparbase.utils.Disposable) force).isDisposed())
+					((com.wicpar.wicparbase.utils.Disposable) force).dispose();
 				iterator.remove();
+			}
 		}
 		vel.add(impulse.mul(delta));
 		vel.add(force.div(mass).mul(delta));
-		impulse.set(0,0,0);
-		force.set(0,0,0);
+		impulse.set(0, 0, 0);
+		force.set(0, 0, 0);
 	}
 
 	@Override

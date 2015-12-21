@@ -12,7 +12,7 @@ public class Spring extends Force
 {
 
 	protected Physical a, b;
-	protected double dampening, stiffness, dst, lastForce;
+	protected double dampening, stiffness, dst, lastForce, stretch;
 
 	public Spring(Physical a, Physical b, double dampening, double stiffness)
 	{
@@ -41,7 +41,7 @@ public class Spring extends Force
 			posB = new Vector3d(b.getPos());
 			velB = new Vector3d(b.getVel());
 		}
-		double stretch = posA.distance(posB) - dst;
+		stretch = posA.distance(posB) - dst;
 		Vector3d norm = new Vector3d(posA).sub(posB).normalize();
 		Vector3d x = new Vector3d(norm).mul(stretch > 0 ? stretch * stiffness : stretch * stiffness);
 		lastForce = stretch * stiffness;
